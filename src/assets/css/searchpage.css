@@ -1,0 +1,62 @@
+#search-page {
+    width: 100vw;
+    height: 100vh;
+    background-color: #153462;
+    display: grid;
+    place-items: center;
+}
+
+.main-container {
+    display: grid;
+    place-items: center;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    right: 1.5rem;
+    z-index: 100;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: right;
+    pointer-events: none;
+    color: #aaa;
+    cursor: pointer;
+}
+
+@font-face {
+    font-family: 'Knewave';
+    src: url(../fonts/Knewave-Regular.ttf);
+}
+
+.main-container h1 {
+    font-family: Knewave;
+    font-size: 144px;
+    color: #c4c4c4;
+    margin: 0px;
+    padding-bottom: 5%;
+    text-shadow: 4px 6px 4px #000000;
+}
+
+.main-container h6 {
+    padding-bottom: 4%;
+    font-size: 36px;
+    font-family: Knewave;
+    color: #c4c4c4;
+}
+
+.btn-search{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 0.4rem;
+    bottom: 0.4rem;
+    color: #aaa;
+    width: 50px;
+    font-size: 18px;
+}

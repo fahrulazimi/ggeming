@@ -1,0 +1,29 @@
+.navbar-desktop {
+    background-color: #153462;
+    width: 100%;
+}
+
+.navbar-nav {
+    width: 100%;
+}
+
+.navbar-brand img {
+    position: relative;
+    
+}
+
+@font-face {
+    font-family: 'Knewave';
+    src: url(../fonts/Knewave-Regular.ttf);
+}
+
+.nav-link {
+    color: #c4c4c4;
+    font-family: Knewave;
+    font-size: 36px;
+    text-shadow: 4px 6px 4px #000000;
+}
+
+.nav-link:hover {
+    color: #575757;
+}
