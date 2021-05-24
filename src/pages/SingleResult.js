@@ -22,7 +22,7 @@ function SingleResult(props) {
             })
 
         axios
-            .get(`http://localhost:5000/api/games/?genre=${data.genre}`)
+            .get(`http://localhost:5000/api/recommendation/?genre=${data.genre}`)
             .then((response) => {
                 console.log(response)
                 setGenre(response.data.data)
@@ -39,11 +39,11 @@ function SingleResult(props) {
                 <h1>{data.title}</h1>
                 <div className="d-flex flex-wrap w-100">
                     <div>
-                        <img style={{ width: "350px", height: "350px", borderRadius: "20px", marginRight: "50px", marginLeft: "200px"}} src={data.urlFoto} alt="" />
+                        <img style={{ width: "350px", height: "350px", borderRadius: "20px", marginRight: "50px", marginLeft: "200px" }} src={data.urlFoto} alt="" />
                     </div>
-                    <table style={{fontSize: "20px"}}>
+                    <table style={{ fontSize: "20px" }}>
                         <tr>
-                            <td>
+                            <td style={{ width: "200px" }}>
                                 <strong>Nama Game</strong>
                             </td>
                             <td>
@@ -51,7 +51,7 @@ function SingleResult(props) {
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td style={{ width: "200px" }}>
                                 <strong>Platform</strong>
                             </td>
                             <td>
@@ -59,7 +59,7 @@ function SingleResult(props) {
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td style={{ width: "200px" }}>
                                 <strong>Genre</strong>
                             </td>
                             <td>
@@ -67,7 +67,7 @@ function SingleResult(props) {
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td style={{ width: "200px" }}>
                                 <strong>Publisher</strong>
                             </td>
                             <td>
@@ -75,26 +75,14 @@ function SingleResult(props) {
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td style={{ width: "200px" }}>
                                 <strong>Developer</strong>
                             </td>
                             <td>
                                 {data.developer}
                             </td>
                         </tr>
-                        {/* <strong>Nama Game</strong>            <span>{data.title}</span><br></br>
-                        <strong>Platform</strong>             <span>{data.platform}</span><br></br>
-                        <strong>Genre</strong>                <span>{data.genre}</span><br></br>
-                        <strong>Publisher</strong>            <span>{data.publisher}</span><br></br>
-                        <strong>Developer</strong>            <span>{data.developer}</span><br></br> */}
                     </table>
-                    {/* <div style={{ fontSize: "18px" }}>
-                        <div>{data.title}</div>
-                        <div>{data.platform}</div>
-                        <div>{data.genre}</div>
-                        <div>{data.publisher}</div>
-                        <div>{data.developer}</div>
-                    </div> */}
                 </div>
                 <h5>Game dengan Genre Serupa</h5>
                 <div className="row">

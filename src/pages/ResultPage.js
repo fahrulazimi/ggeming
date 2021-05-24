@@ -152,29 +152,29 @@ function ResultPage(props) {
                         <div>
                             <p>Data tidak ditemukan</p>
                             <div className="row">
-                                        <div className="col-12">
-                                            <div className="result-card flex-wrap d-flex justify-content-center w-100">
-                                                {
-                                                    data.map(e => (
-                                                        <div class="grid mx-2 mt-5">
-                                                            <div class="grid-item">
-                                                                <Link to={`/singleresult/${e.id}`}>
-                                                                    <div class="card">
-                                                                        <img class="card-img" src={e.urlFoto} alt="" />
-                                                                        <div class="card-content">
-                                                                            <h1 class="card-header pb-4">{e.title}</h1>
-                                                                            <p class="card-text">{e.genre}</p>
-                                                                            <p class="card-text">{e.platform}</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </Link>
+                                <div className="col-12">
+                                    <div className="result-card flex-wrap d-flex justify-content-center w-100">
+                                        {
+                                            data.map(e => (
+                                                <div class="grid mx-2 mt-5">
+                                                    <div class="grid-item">
+                                                        <Link to={`/singleresult/${e.id}`}>
+                                                            <div class="card">
+                                                                <img class="card-img" src={e.urlFoto} alt="" />
+                                                                <div class="card-content">
+                                                                    <h1 class="card-header pb-4">{e.title}</h1>
+                                                                    <p class="card-text">{e.genre}</p>
+                                                                    <p class="card-text">{e.platform}</p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    ))
-                                                }
-                                            </div>
-                                        </div>
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
                                     </div>
+                                </div>
+                            </div>
                         </div>
                     )}
                 </div>
