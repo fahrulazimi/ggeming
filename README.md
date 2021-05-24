@@ -4,7 +4,7 @@ Projek ini dibangun dengan menggunakan React JS sebagai tampilan front end dari 
 
 ## Cara Penggunaan Front End
 
-- Kita perlu menginstall dependency package agar server dapat berjalan dengan menjalankan command berikut 
+- Kita perlu menginstall dependency package agar client dapat berjalan dengan menjalankan command berikut 
   
   ```cmd
   npm install
