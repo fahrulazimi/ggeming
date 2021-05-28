@@ -14,7 +14,7 @@ function ResultPage(props) {
     const [data, setData] = useState([])
     let path = props.location.search;
     let params = queryString.parse(path);
-    
+
     useEffect(() => {
         if (params.query != null) {
             axios
@@ -49,7 +49,7 @@ function ResultPage(props) {
                 })
         } else {
             axios
-                .get(`http://localhost:5000/api/games/?title=${params.title}&genre=${params.genre}&platform=${params.platform}&developer=${params.developer}&publsiher=${params.publisher}`)
+                .get(`http://localhost:5000/api/games/?title=${params.title}&genre=${params.genre}&platform=${params.platform}&developer=${params.developer}&publisher=${params.publisher}`)
                 .then((response) => {
                     console.log(response)
                     setData(response.data.data)
