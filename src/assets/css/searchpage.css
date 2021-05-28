@@ -50,7 +50,7 @@
     color: #c4c4c4;
 }
 
-.btn-search{
+/* .btn-search{
     background-color: transparent;
     border: none;
     position: absolute;
@@ -59,4 +59,28 @@
     color: #aaa;
     width: 50px;
     font-size: 18px;
+} */
+
+.btn-search{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    left: 0.3rem;
+    z-index: 100;
+    color: #aaa;
+    width: 50px;
+    font-size: 18px;
+    bottom: 5px;
+}
+
+.btn-more{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 0.5rem;
+    z-index: 100;
+    color: #aaa;
+    width: 50px;
+    font-size: 18px;
+    outline: none;
 }

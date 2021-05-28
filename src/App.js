@@ -10,8 +10,8 @@ function App() {
       <Switch>
         <Route path="/" exact component={SearchPage}>
         </Route>
-        <Route path="/result/:search" component={(props) => <Result {...props} />}></Route>
-        <Route path="/result" exact component={Result}></Route>
+        <Route path="/result" component={(props) => <Result {...props} />}></Route>
+        {/* <Route path="/result" exact component={Result}></Route> */}
         <Route path="/singleresult/:id" component={(props) => <SingleResult {...props} />}>
         </Route>
         {/* <Route path="/singleresult" component={SingleResult}>
