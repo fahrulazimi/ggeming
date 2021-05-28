@@ -12,7 +12,7 @@ function SingleResult(props) {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/api/games/${id}`)
+            .get(`https://ggeming-backend.herokuapp.com/api/games/${id}`)
             .then(response => {
                 setData(response.data.data)
                 console.log(response.data.data)
@@ -22,7 +22,7 @@ function SingleResult(props) {
             })
 
         axios
-            .get(`http://localhost:5000/api/recommendation/?genre=${data.genre}`)
+            .get(`https://ggeming-backend.herokuapp.com/api/recommendation/?genre=${data.genre}`)
             .then((response) => {
                 console.log(response)
                 setGenre(response.data.data)

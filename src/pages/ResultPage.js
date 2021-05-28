@@ -18,7 +18,7 @@ function ResultPage(props) {
     useEffect(() => {
         if (params.query != null) {
             axios
-                .get(`http://localhost:5000/api/games/?title=${params.query}`)
+                .get(`https://ggeming-backend.herokuapp.com/api/games/?title=${params.query}`)
                 .then((response) => {
                     console.log(response)
                     setTitle(response.data.data)
@@ -29,7 +29,7 @@ function ResultPage(props) {
                 })
 
             axios
-                .get(`http://localhost:5000/api/games/?genre=${params.query}`)
+                .get(`https://ggeming-backend.herokuapp.com/api/games/?genre=${params.query}`)
                 .then((response) => {
                     console.log(response)
                     setGenre(response.data.data)
@@ -39,7 +39,7 @@ function ResultPage(props) {
                 })
 
             axios
-                .get(`http://localhost:5000/api/games/?platform=${params.query}`)
+                .get(`https://ggeming-backend.herokuapp.com/api/games/?platform=${params.query}`)
                 .then((response) => {
                     console.log(response)
                     setPlatform(response.data.data)
@@ -49,7 +49,7 @@ function ResultPage(props) {
                 })
         } else {
             axios
-                .get(`http://localhost:5000/api/games/?title=${params.title}&genre=${params.genre}&platform=${params.platform}&developer=${params.developer}&publisher=${params.publisher}`)
+                .get(`https://ggeming-backend.herokuapp.com/api/games/?title=${params.title}&genre=${params.genre}&platform=${params.platform}&developer=${params.developer}&publisher=${params.publisher}`)
                 .then((response) => {
                     console.log(response)
                     setData(response.data.data)
