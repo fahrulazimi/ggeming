@@ -42,7 +42,7 @@ function SearchPage(props) {
     const checkboxPublisher = () => { setPublisher(!publisher) };
 
     const onSubmitHandler = () => {
-        window.location.href = "/result?title=" + stitle + "&genre=" + sgenre + "&platform=" + splatform + "&developer=" + sdeveloper + "&publisher=" + spublisher
+        window.location.href = "/result?title=" + stitle + "&genre=" + sgenre + "&platform=" + splatform + "&publisher=" + spublisher + "&developer=" + sdeveloper
     }
 
     return (
@@ -93,13 +93,13 @@ function SearchPage(props) {
                             </CustomInput>
                         </FormGroup>
                         <FormGroup>
-                            <CustomInput type="checkbox" onClick={checkboxDeveloper} id="exampleCustomCheckbox4" label="Developer">
-                                <Input type="text" name="Developer" id="searchdeveloper" onChange={(e) => setSdeveloper(e.target.value)} value={sdeveloper} placeholder="Developer" disabled={developer} />
+                            <CustomInput type="checkbox" onClick={checkboxPublisher} id="exampleCustomCheckbox5" label="Publisher">
+                                <Input type="text" name="Publisher" id="searchpublisher" onChange={(e) => setSpublisher(e.target.value)} value={spublisher} placeholder="Publisher" disabled={publisher} />
                             </CustomInput>
                         </FormGroup>
                         <FormGroup>
-                            <CustomInput type="checkbox" onClick={checkboxPublisher} id="exampleCustomCheckbox5" label="Publisher">
-                                <Input type="text" name="Publisher" id="searchpublisher" onChange={(e) => setSpublisher(e.target.value)} value={spublisher} placeholder="Publisher" disabled={publisher} />
+                            <CustomInput type="checkbox" onClick={checkboxDeveloper} id="exampleCustomCheckbox4" label="Developer">
+                                <Input type="text" name="Developer" id="searchdeveloper" onChange={(e) => setSdeveloper(e.target.value)} value={sdeveloper} placeholder="Developer" disabled={developer} />
                             </CustomInput>
                         </FormGroup>
                     </ModalBody>

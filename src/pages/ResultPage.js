@@ -49,7 +49,7 @@ function ResultPage(props) {
                 })
         } else {
             axios
-                .get(`https://ggeming-backend.herokuapp.com/api/games/?title=${params.title}&genre=${params.genre}&platform=${params.platform}&developer=${params.developer}&publisher=${params.publisher}`)
+                .get(`https://ggeming-backend.herokuapp.com/api/games/?title=${params.title}&genre=${params.genre}&platform=${params.platform}&publisher=${params.publisher}&developer=${params.developer}`)
                 .then((response) => {
                     console.log(response)
                     setData(response.data.data)
