@@ -1,48 +1,39 @@
 import React, { useState, useEffect } from 'react'
 import '../assets/css/navbar.css'
 import '../assets/css/result.css'
+import '../assets/css/paginate.css'
 import Navbar from '../components/Navbar'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import queryString from 'query-string'
+import ReactPaginate from "react-paginate";
 
 function ResultPage(props) {
     const { search } = props.match.params
-    const [title, setTitle] = useState([])
-    const [genre, setGenre] = useState([])
-    const [platform, setPlatform] = useState([])
+    const [find, setFind] = useState([])
     const [data, setData] = useState([])
+    const [pageNumber, setPageNumber] = useState(0);
     let path = props.location.search;
     let params = queryString.parse(path);
+
+    const usersPerPage = 10;
+    const pagesVisited = pageNumber * usersPerPage;
+
+    const pageCount = Math.ceil(data.length / usersPerPage);
+    const pageCount2 = Math.ceil(find.length / usersPerPage);
+
+    const changePage = ({ selected }) => {
+        setPageNumber(selected);
+    };
 
     useEffect(() => {
         if (params.query != null) {
             axios
-                .get(`https://ggeming-backend.herokuapp.com/api/games/?title=${params.query}`)
+                .get(`https://ggeming-backend.herokuapp.com/api/search?search=${params.query}`)
                 .then((response) => {
                     console.log(response)
-                    setTitle(response.data.data)
+                    setFind(response.data.data)
 
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-
-            axios
-                .get(`https://ggeming-backend.herokuapp.com/api/games/?genre=${params.query}`)
-                .then((response) => {
-                    console.log(response)
-                    setGenre(response.data.data)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-
-            axios
-                .get(`https://ggeming-backend.herokuapp.com/api/games/?platform=${params.query}`)
-                .then((response) => {
-                    console.log(response)
-                    setPlatform(response.data.data)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -58,15 +49,8 @@ function ResultPage(props) {
                     console.log(err)
                 })
         }
-        // axios.get(`http://localhost:5000/api/games`)
-        //     .then(response => {
-        //         setData(response.data.data)
-        //         console.log(response.data.data)
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     })
     }, [search])
+
     return (
         <div>
             <Navbar></Navbar>
@@ -76,94 +60,44 @@ function ResultPage(props) {
                         <div>
                             <h2>Menampilkan Pencarian "{params.query}"</h2>
                             <div>
-                                {title.length || genre.length || platform.length !== 0 ? (
+                                {find.length !== 0 ? (
                                     <div>
-                                        <div>
-                                            <p>Menampilkan "{params.query}" dalam nama game</p>
-                                            {title.length !== 0 ? (
-                                                <div className="row">
-                                                    <div className="col-12">
-                                                        <div className="result-card flex-wrap d-flex justify-content-center w-100">
-                                                            {
-                                                                title.map(e => (
-                                                                    <div class="grid mx-2 mt-5">
-                                                                        <div class="grid-item">
-                                                                            <Link to={`/singleresult/${e.id}`}>
-                                                                                <div class="card">
-                                                                                    <img class="card-img" src={e.urlFoto} alt="" />
-                                                                                    <div class="card-content">
-                                                                                        <h1 class="card-header pb-4">{e.title}</h1>
-                                                                                        <p class="card-text">{e.genre}</p>
-                                                                                        <p class="card-text">{e.platform}</p>
-                                                                                    </div>
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <div className="result-card flex-wrap d-flex justify-content-center w-100">
+                                                    {
+                                                        find
+                                                            .slice(pagesVisited, pagesVisited + usersPerPage)
+                                                            .map(e => (
+                                                                <div class="grid mx-2 mt-5">
+                                                                    <div class="grid-item">
+                                                                        <Link to={`/singleresult/${e.id}`}>
+                                                                            <div class="card">
+                                                                                <img class="card-img" src={e.urlFoto} alt="" />
+                                                                                <div class="card-content">
+                                                                                    <h1 class="card-header pb-4">{e.title}</h1>
+                                                                                    <p class="card-text">{e.genre}</p>
+                                                                                    <p class="card-text">{e.platform}</p>
                                                                                 </div>
-                                                                            </Link>
-                                                                        </div>
+                                                                            </div>
+                                                                        </Link>
                                                                     </div>
-                                                                ))
-                                                            }
-                                                        </div>
-                                                    </div>
+                                                                </div>
+                                                            ))
+                                                    }
+                                                    <ReactPaginate
+                                                        previousLabel={"Previous"}
+                                                        nextLabel={"Next"}
+                                                        pageCount={pageCount2}
+                                                        onPageChange={changePage}
+                                                        containerClassName={"paginationBttns"}
+                                                        previousLinkClassName={"previousBttn"}
+                                                        nextLinkClassName={"nextBttn"}
+                                                        disabledClassName={"paginationDisabled"}
+                                                        activeClassName={"paginationActive"}
+                                                    />
                                                 </div>
-                                            ) : null}
-                                        </div>
-                                        <div>
-                                            <p>Menampilkan "{params.query}" dalam genre</p>
-                                            {genre.length !== 0 ? (
-                                                <div className="row">
-                                                    <div className="col-12">
-                                                        <div className="result-card flex-wrap d-flex justify-content-center w-100">
-                                                            {
-                                                                genre.map(e => (
-                                                                    <div class="grid mx-2 mt-5">
-                                                                        <div class="grid-item">
-                                                                            <Link to={`/singleresult/${e.id}`}>
-                                                                                <div class="card">
-                                                                                    <img class="card-img" src={e.urlFoto} alt="" />
-                                                                                    <div class="card-content">
-                                                                                        <h1 class="card-header pb-4">{e.title}</h1>
-                                                                                        <p class="card-text">{e.genre}</p>
-                                                                                        <p class="card-text">{e.platform}</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </Link>
-                                                                        </div>
-                                                                    </div>
-                                                                ))
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            ) : null}
-                                        </div>
-                                        <div>
-                                            <p>Menampilkan "{params.query}" dalam platform</p>
-                                            {platform.length !== 0 ? (
-                                                <div className="row">
-                                                    <div className="col-12">
-                                                        <div className="result-card flex-wrap d-flex justify-content-center w-100">
-                                                            {
-                                                                platform.map(e => (
-                                                                    <div class="grid mx-2 mt-5">
-                                                                        <div class="grid-item">
-                                                                            <Link to={`/singleresult/${e.id}`}>
-                                                                                <div class="card">
-                                                                                    <img class="card-img" src={e.urlFoto} alt="" />
-                                                                                    <div class="card-content">
-                                                                                        <h1 class="card-header pb-4">{e.title}</h1>
-                                                                                        <p class="card-text">{e.genre}</p>
-                                                                                        <p class="card-text">{e.platform}</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </Link>
-                                                                        </div>
-                                                                    </div>
-                                                                ))
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            ) : null}
+                                            </div>
                                         </div>
                                     </div>
                                 ) : (
@@ -179,29 +113,42 @@ function ResultPage(props) {
                             <div className="col-12">
                                 <div className="result-card flex-wrap d-flex justify-content-center w-100">
                                     {
-                                        data.map(e => (
-                                            <div class="grid mx-2 mt-5">
-                                                <div class="grid-item">
-                                                    <Link to={`/singleresult/${e.id}`}>
-                                                        <div class="card">
-                                                            <img class="card-img" src={e.urlFoto} alt="" />
-                                                            <div class="card-content">
-                                                                <h1 class="card-header pb-4">{e.title}</h1>
-                                                                <p class="card-text">{e.genre}</p>
-                                                                <p class="card-text">{e.platform}</p>
+                                        data
+                                            .slice(pagesVisited, pagesVisited + usersPerPage)
+                                            .map(e => (
+                                                <div class="grid mx-2 mt-5">
+                                                    <div class="grid-item">
+                                                        <Link to={`/singleresult/${e.id}`}>
+                                                            <div class="card">
+                                                                <img class="card-img" src={e.urlFoto} alt="" />
+                                                                <div class="card-content">
+                                                                    <h1 class="card-header pb-4">{e.title}</h1>
+                                                                    <p class="card-text">{e.genre}</p>
+                                                                    <p class="card-text">{e.platform}</p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </Link>
+                                                        </Link>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        ))
+                                            ))
                                     }
+                                    <ReactPaginate
+                                        previousLabel={"Previous"}
+                                        nextLabel={"Next"}
+                                        pageCount={pageCount}
+                                        onPageChange={changePage}
+                                        containerClassName={"paginationBttns"}
+                                        previousLinkClassName={"previousBttn"}
+                                        nextLinkClassName={"nextBttn"}
+                                        disabledClassName={"paginationDisabled"}
+                                        activeClassName={"paginationActive"}
+                                    />
                                 </div>
                             </div>
                         </div>
                 }
-
             </div>
+
         </div>
     )
 }
